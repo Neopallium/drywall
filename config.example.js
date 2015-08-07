@@ -1,5 +1,16 @@
 'use strict';
 
+var SMTP_TLS = false
+var SMTP_SSL = true
+
+if (process.env.SMTP_TLS) {
+	SMTP_TLS = process.env.SMTP_TLS
+}
+
+if (process.env.SMTP_SSL) {
+	SMTP_SSL = process.env.SMTP_SSL
+}
+
 exports.port = process.env.PORT || 3000;
 exports.mongodb = {
   uri: process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost:27017/drywall'
@@ -23,7 +34,8 @@ exports.smtp = {
     user: process.env.SMTP_USERNAME || 'your@email.addy',
     password: process.env.SMTP_PASSWORD || 'bl4rg!',
     host: process.env.SMTP_HOST || 'smtp.gmail.com',
-    ssl: true
+    tls: SMTP_TLS,
+    ssl: SMTP_SSL
   }
 };
 exports.oauth = {

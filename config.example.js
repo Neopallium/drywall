@@ -4,11 +4,11 @@ var SMTP_TLS = false
 var SMTP_SSL = true
 
 if (process.env.SMTP_TLS) {
-	SMTP_TLS = process.env.SMTP_TLS
+	SMTP_TLS = JSON.parse(process.env.SMTP_TLS)
 }
 
 if (process.env.SMTP_SSL) {
-	SMTP_SSL = process.env.SMTP_SSL
+	SMTP_SSL = JSON.parse(process.env.SMTP_SSL)
 }
 
 exports.port = process.env.PORT || 3000;
